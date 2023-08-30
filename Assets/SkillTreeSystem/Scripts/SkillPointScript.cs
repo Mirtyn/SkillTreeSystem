@@ -46,7 +46,7 @@ public class SkillPointScript : MonoBehaviour
 
         if (!skillTreeSystemSettings.UseSkillPoints)
         {
-            skillTreeSystemSettings.SkillTreePlayerData.SkillPoints = Mathf.Infinity;
+            skillTreeSystemSettings.SkillTreePlayerData.SkillPoints = float.MaxValue;
         }
     }
 
@@ -73,6 +73,14 @@ public class SkillPointScript : MonoBehaviour
         CheckBuyeable();
         CheckNextBuyeable();
         ChangeSkillVisuals();
+
+        if (!skillTreeSystemSettings.UseSkillPoints)
+        {
+            if (skillTreeSystemSettings.SkillTreePlayerData.SkillPoints != float.MaxValue)
+            {
+                skillTreeSystemSettings.SkillTreePlayerData.SkillPoints = float.MaxValue;
+            }
+        }
     }
 
     void CheckNextBuyeable()
